@@ -1,0 +1,33 @@
+//// To list 4 collumns(artists.name, albums.name, songs.track, 
+songs.title) only where the album name is "Doolittle." 
+Order the results first by artist name, then album name,
+then song track #
+
+SELECT artists.name, albums.name, songs.track, songs.title FROM songs
+INNER JOIN albums ON songs.album = albums._id
+INNER JOIN artists ON albums.artist = artists._id
+WHERE albums.name = "Doolittle"
+ORDER BY artists.name, albums.name, songs.track;
+
+//// Like the code above but changing the "WHERE" clause to find any 
+entry that has "doctor" in the song name.
+
+
+SELECT artists.name, albums.name, songs.track, songs.title FROM songs
+INNER JOIN albums ON songs.album = albums._id
+INNER JOIN artists ON albums.artist = artists._id
+WHERE songs.title LIKE "%doctor%"
+ORDER BY artists.name, albums.name, songs.track;
+
+//// Like the code above but changing the wildcard search to artist
+name. the percent(%) allows for any string of characters to appear 
+before or after, depending on where it falls.(Example, %M looks for
+anything with the last character of M. %M% would look for anything
+with an "M" anywhere in the field, M% would look for anything
+beginning with an "M").
+
+SELECT artists.name, albums.name, songs.track, songs.title FROM songs
+INNER JOIN albums ON songs.album = albums._id
+INNER JOIN artists ON albums.artist = artists._id
+WHERE artists.name LIKE "%jefferson%"
+ORDER BY artists.name, albums.name, songs.track;
